@@ -1,0 +1,6 @@
+﻿namespace Cinema.Web.images
+{
+    public class text
+    {
+    }
+}

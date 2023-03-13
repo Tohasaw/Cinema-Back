@@ -38,7 +38,7 @@ namespace Cinema.Data.Features.Movies.Queries.GetMoviesWithEntries
                 .Set<Movie>()
                 .Include(movie => movie.TableEntries)
                 .ProjectTo<GetMoviesWithEntriesDto>(_provider)
-                .OrderBy(t => t.TableEntries.)
+                .OrderBy(t => t.Id)
                 .ToListAsync(cancellationToken);
         }
     }
