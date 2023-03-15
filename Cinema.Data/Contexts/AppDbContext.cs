@@ -41,8 +41,8 @@ public class AppDbContext : DbContext
             HasData(
             new User() { Id = 1, Email = "admin", Password = "admin", RoleId = 1 }
             );
+        // Правила для создания данных о местах
         int i = 1;
-        int i1 = 1;
         for (int r = 1; r < 9; r++)
         {
             for (int c = 1; c < 32; c++)
@@ -86,6 +86,7 @@ public class AppDbContext : DbContext
             HasData(
             new Seat() { Id = id, IsAvailable = true, Column = column++, Row = 17 }
             );
+        // Правила для создания данных о местах
     }
 
 }
