@@ -10,8 +10,15 @@ namespace Cinema.Web.Controllers
         public IActionResult GetImage(
             [FromRoute] string fileName)
         {
-            Byte[] b = System.IO.File.ReadAllBytes($"images/{fileName}");
-            return File(b, "image/png");
+            if (System.IO.File.Exists($"images/{fileName}"))
+            {
+                Byte[] b = System.IO.File.ReadAllBytes($"images/{fileName}");
+                return File(b, "image/png");
+            }
+            else
+            {
+                return NotFound();
+            }
         }
         [HttpPost]
         [Authorize(Roles = "admin")]

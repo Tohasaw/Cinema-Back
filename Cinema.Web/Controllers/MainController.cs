@@ -3,7 +3,6 @@ using Cinema.Data.Features.Movies.Queries.GetMovieWithEntries;
 using Cinema.Data.Features.Prices.Queries.GetPricesForList;
 using Cinema.Data.Features.Purchases.Commands.CreatePurchaseTickets;
 using Cinema.Data.Features.Purchases.Queries.GetPurchaseByKey;
-using Cinema.Data.Features.SeatPrices.Queries.GetSeatPrice;
 using Cinema.Data.Features.SeatPrices.Queries.GetSeatPricesForListFilt;
 using Cinema.Data.Features.Seats.Queries.GetSeats;
 using Cinema.Data.Features.Tickets.Commands.CancelTickets;
@@ -133,7 +132,7 @@ namespace Cinema.Web.Controllers
                 $"Вы приобрели билеты в кинотеатре Помор.", //subject
                 $"Вами были приобретены билеты на фильм {purchase.TableEntry.Movie.Title} на {purchase.TableEntry.DateTime:f}:<br>" +
                 str +
-                $"Вы можете вернуть билеты, перейдя по ссылке: http://192.168.100.5:8080/purchase/{purchaseKey}.<br>" +
+                $"Вы можете вернуть билеты, перейдя по ссылке: https://192.168.100.5:8080/purchase/{purchaseKey}.<br>" +
                 "Перед посещением сеанса необходимо предьявить контролеру билеты из прикрепленного файла.", //Html документ
                 pdfBytes, //pdf file
                 cancellationToken);

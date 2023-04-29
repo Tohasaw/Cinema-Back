@@ -28,8 +28,8 @@ namespace Cinema.Data.Features.Movies.Queries.GetMovies
         {
             var dtos = await _context
                 .Set<Movie>()
+                .OrderByDescending(m => m.Id)
                 .ProjectTo<GetMoviesDto>(_provider)
-                .OrderBy(m => m.Id)
                 .ToListAsync(cancellationToken);
 
             return dtos;

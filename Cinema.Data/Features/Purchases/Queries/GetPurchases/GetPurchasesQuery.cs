@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Cinema.Data.Features.Purchases.Queries.GetPurchases
 {
-    public sealed record GetPurchasesQuery : IRequest<IEnumerable<GetPurchasesDto>>;
+    public sealed record GetPurchasesQuery() : IRequest<IEnumerable<GetPurchasesDto>>;
 
     internal sealed class GetPurchasesHandler : IRequestHandler<GetPurchasesQuery, IEnumerable<GetPurchasesDto>>
     {
@@ -26,16 +26,17 @@ namespace Cinema.Data.Features.Purchases.Queries.GetPurchases
             GetPurchasesQuery request,
             CancellationToken cancellationToken)
         {
-            return await GetDtoAsync(cancellationToken);
+            return await GetDtoAsync(request, cancellationToken);
         }
 
         private async Task<IEnumerable<GetPurchasesDto>> GetDtoAsync(
+            GetPurchasesQuery request,
             CancellationToken cancellationToken)
         {
             return await _context
                 .Set<Purchase>()
+                .OrderByDescending(x => x.DateTime)
                 .ProjectTo<GetPurchasesDto>(_provider)
-                .OrderByDescending(x => x.Id)
                 .ToListAsync(cancellationToken);
         }
     }

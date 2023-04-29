@@ -1,6 +1,7 @@
 ﻿using Cinema.Data.Features.Purchases.Commands.UpdatePurchase;
 using Cinema.Data.Features.Purchases.Queries.GetPurchase;
 using Cinema.Data.Features.Purchases.Queries.GetPurchases;
+using Cinema.Data.Features.Purchases.Queries.GetPurchasesCountQuery;
 using Cinema.Data.Features.SeatPrices.Commands.CreatePurchase;
 using Cinema.Data.Features.TableEntries.Commands.DeletePurchase;
 using Microsoft.AspNetCore.Authorization;
@@ -12,6 +13,8 @@ namespace Cinema.Web.Controllers;
 [Authorize(Roles = "admin,cassir,controler")]
 public sealed class PurchasesController : Controller
 {
+    const int maxPageSize = 20;
+
     [HttpGet("{purchaseId:int}")]
     public async Task<IActionResult> GetPurchaseAsync(
         [FromRoute] int purchaseId,
@@ -31,7 +34,7 @@ public sealed class PurchasesController : Controller
         [FromBody] CreatePurchaseDto dto,
         [FromQuery] CancellationToken cancellationToken)
     {
-        var movieId = await Mediator.Send(
+        await Mediator.Send(
             new CreatePurchaseCommand(dto),
             cancellationToken);
 

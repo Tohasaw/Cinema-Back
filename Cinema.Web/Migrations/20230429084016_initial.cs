@@ -202,11 +202,11 @@ namespace Cinema.Web.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     TableEntryId = table.Column<int>(type: "integer", nullable: false),
                     DateTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    EmailAddress = table.Column<string>(type: "text", nullable: false),
+                    EmailAddress = table.Column<string>(type: "text", nullable: true),
                     AdvertAccepted = table.Column<bool>(type: "boolean", nullable: false),
-                    PhoneNumber = table.Column<int>(type: "integer", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "text", nullable: false),
                     RefundKey = table.Column<string>(type: "text", nullable: false),
-                    PriceTotal = table.Column<double>(type: "double precision", nullable: false)
+                    PriceTotal = table.Column<double>(type: "double precision", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -255,7 +255,8 @@ namespace Cinema.Web.Migrations
                 values: new object[,]
                 {
                     { 1, "admin" },
-                    { 2, "user" }
+                    { 2, "cassir" },
+                    { 3, "controler" }
                 });
 
             migrationBuilder.InsertData(
@@ -707,7 +708,12 @@ namespace Cinema.Web.Migrations
             migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "Id", "Email", "Password", "RoleId" },
-                values: new object[] { 1, "admin", "admin", 1 });
+                values: new object[,]
+                {
+                    { 1, "admin", "admin", 1 },
+                    { 2, "cassir", "cassir", 2 },
+                    { 3, "controler", "controler", 2 }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_PriceListRelation_PriceId",

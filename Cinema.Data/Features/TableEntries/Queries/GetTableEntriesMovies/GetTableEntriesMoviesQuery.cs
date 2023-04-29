@@ -48,6 +48,7 @@ namespace Cinema.Data.Features.TableEntries.Queries.GetTableEntriesMovies
                 .Set<TableEntry>()
                 .Include(e => e.Movie)
                 .Include(e => e.PriceList)
+                .OrderByDescending(e => e.DateTime)
                 .ProjectTo<GetTableEntriesMoviesDto>(_provider)
                 .ToListAsync(cancellationToken);
         }

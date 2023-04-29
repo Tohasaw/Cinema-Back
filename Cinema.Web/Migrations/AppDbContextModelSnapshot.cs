@@ -148,13 +148,13 @@ namespace Cinema.Web.Migrations
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("EmailAddress")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("PhoneNumber")
-                        .HasColumnType("integer");
-
-                    b.Property<double>("PriceTotal")
+                    b.Property<double?>("PriceTotal")
                         .HasColumnType("double precision");
 
                     b.Property<string>("RefundKey")
@@ -196,7 +196,12 @@ namespace Cinema.Web.Migrations
                         new
                         {
                             Id = 2,
-                            Name = "user"
+                            Name = "cassir"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "controler"
                         });
                 });
 
@@ -3417,6 +3422,20 @@ namespace Cinema.Web.Migrations
                             Email = "admin",
                             Password = "admin",
                             RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Email = "cassir",
+                            Password = "cassir",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Email = "controler",
+                            Password = "controler",
+                            RoleId = 2
                         });
                 });
 

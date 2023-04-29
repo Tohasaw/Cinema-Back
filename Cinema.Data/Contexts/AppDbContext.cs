@@ -39,7 +39,9 @@ public class AppDbContext : DbContext
             );
         modelBuilder.Entity<User>().
             HasData(
-            new User() { Id = 1, Email = "admin", Password = "admin", RoleId = 1 }
+            new User() { Id = 1, Email = "admin", Password = "admin", RoleId = 1 },
+            new User() { Id = 2, Email = "cassir", Password = "cassir", RoleId = 2 },
+            new User() { Id = 3, Email = "controler", Password = "controler", RoleId = 2 }
             );
         // Правила для создания данных о местах
         int i = 1;

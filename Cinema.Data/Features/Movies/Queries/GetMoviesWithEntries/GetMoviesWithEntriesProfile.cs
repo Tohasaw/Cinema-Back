@@ -16,7 +16,7 @@ namespace Cinema.Data.Features.Movies.Queries.GetMoviesWithEntries
             var dateTime = DateTime.Now.AddDays(7).Date;
             var dateNow = DateTime.Today.Date;
             CreateMap<Movie, GetMoviesWithEntriesDto>()
-                .ForMember(dest => dest.TableEntries, src => src.MapFrom(src => src.TableEntries.Where(e => e.DateTime > dateNow && e.DateTime < dateTime)));
+                .ForMember(dest => dest.TableEntries, src => src.MapFrom(src => src.TableEntries.Where(e => e.DateTime > dateNow && e.DateTime < dateTime).OrderBy(e => e.DateTime)));
             CreateMap<TableEntry, GetTableEntryDto>();
         }
     }
